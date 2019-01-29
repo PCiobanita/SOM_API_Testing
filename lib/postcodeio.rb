@@ -10,8 +10,6 @@ class PostCodesio
     MultiplePostcodeService.new(i)
   end
 
-
-
 end
 
 postcode_api = PostCodesio.new
