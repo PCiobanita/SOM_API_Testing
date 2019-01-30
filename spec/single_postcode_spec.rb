@@ -26,6 +26,10 @@ describe PostCodesio do
     it 'should correctly display quality' do
       expect(@single_postcode_service.retrive_quality).to be_kind_of(Integer)
     end
+  
+    it 'value of quality should be less that 9 ' do
+      expect(@single_postcode_service.retrive_quality).to be <= 9
+    end
 
     it 'should correctly give easting coordinates' do
       expect(@single_postcode_service.retrive_easting).to be_kind_of(Integer)
@@ -66,14 +70,20 @@ describe PostCodesio do
 
     it 'should correctly show the indcode of the postcode' do
       expect(@single_postcode_service.retrive_incode).to be_kind_of(String)
-      expect(@single_postcode_service.retrive_incode.length).to be <= 4
-
     end
 
+    it 'incode should be less that 4 characters and be part of postcode' do
+      expect(@single_postcode_service.retrive_postcode).to include(@single_postcode_service.retrive_incode)
+      expect(@single_postcode_service.retrive_incode.length).to be <= 4
+    end
+    
     it 'should correctly give the outcode of the postcode' do
       expect(@single_postcode_service.retrive_outcode).to be_kind_of(String)
-      expect(@single_postcode_service.retrive_incode.length).to be <= 4
-
+    end
+    
+    it 'outcode should be less that 4 characters and be part of postcode' do
+      expect(@single_postcode_service.retrive_postcode).to include(@single_postcode_service.retrive_outcode)
+      expect(@single_postcode_service.retrive_outcode.length).to be <= 4
     end
 
     it 'should correctly retrive parliamentary constituency' do
